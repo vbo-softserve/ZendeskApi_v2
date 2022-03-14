@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -42,6 +43,7 @@ namespace ZendeskApi_v2
     public class Core : ICore
     {
         private readonly Encoding encoding = Encoding.UTF8;
+        private readonly Dictionary<string, string> _requestHeaders;
         protected string User;
         protected string Password;
         protected string ZendeskUrl;
@@ -63,7 +65,7 @@ namespace ZendeskApi_v2
         /// <param name="zendeskApiUrl"></param>
         /// <param name="p_OAuthToken"></param>
         public Core(string zendeskApiUrl, string p_OAuthToken) :
-            this(zendeskApiUrl, null, null, null, p_OAuthToken)
+            this(zendeskApiUrl, null, null, null, p_OAuthToken, null)
         {
         }
 
@@ -73,7 +75,7 @@ namespace ZendeskApi_v2
         /// <param name="zendeskApiUrl"></param>
         /// <param name="p_OAuthToken"></param>
         public Core(string zendeskApiUrl, string user, string password, string apiToken) :
-            this(zendeskApiUrl, user, password, apiToken, null)
+            this(zendeskApiUrl, user, password, apiToken, null, null)
         {
         }
 
@@ -84,7 +86,8 @@ namespace ZendeskApi_v2
         /// <param name="user"></param>
         /// <param name="password">LEAVE BLANK IF USING TOKEN</param>
         /// <param name="apiToken">Optional Param which is used if specified instead of the password</param>
-        public Core(string zendeskApiUrl, string user, string password, string apiToken, string p_OAuthToken)
+        /// <param name="requestHeaders">Optional Request Headers</param>
+        public Core(string zendeskApiUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
         {
             User = user;
             Password = password;
@@ -96,6 +99,8 @@ namespace ZendeskApi_v2
             ZendeskUrl = zendeskApiUrl;
             ApiToken = apiToken;
             OAuthToken = p_OAuthToken;
+
+            _requestHeaders = requestHeaders;
         }
 
 #if SYNC
@@ -130,6 +135,14 @@ namespace ZendeskApi_v2
                 if (Proxy != null)
                 {
                     req.Proxy = Proxy;
+                }
+
+                if (_requestHeaders != null)
+                {
+                    foreach (var header in _requestHeaders)
+                    {
+                        req.Headers[header.Key] = header.Value;
+                    }
                 }
 
                 req.Headers["Authorization"] = GetPasswordOrTokenAuthHeader();

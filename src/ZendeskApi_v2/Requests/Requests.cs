@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 #if ASYNC
 using System.Threading.Tasks;
 #endif
@@ -111,8 +112,8 @@ namespace ZendeskApi_v2.Requests
 
     public class Requests : Core, IRequests
     {
-        public Requests(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public Requests(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken,  Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 
@@ -184,7 +185,7 @@ namespace ZendeskApi_v2.Requests
             }
 
             var body = new { request };
-            
+
             return GenericPut<IndividualRequestResponse>($"requests/{request.Id.Value}.json", body);
         }
 #endif

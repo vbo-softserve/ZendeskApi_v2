@@ -34,7 +34,7 @@ namespace ZendeskApi_v2.Requests
         /// <param name="file"></param>
         /// <param name="token"></param>
         /// <param name="timeout"></param>
-        /// <returns></returns>  
+        /// <returns></returns>
         Task<Upload> UploadAttachmentAsync(ZenFile file, string token = "", int? timeout = null);
         Task<Upload> UploadAttachmentsAsync(IEnumerable<ZenFile> files, int? timeout = null);
         Task<bool> DeleteUploadAsync(Upload upload);
@@ -45,8 +45,8 @@ namespace ZendeskApi_v2.Requests
 
     public class Attachments : Core, IAttachments
     {
-        public Attachments(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public Attachments(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         { }
 #if SYNC
 
@@ -90,7 +90,7 @@ namespace ZendeskApi_v2.Requests
         /// <param name="file"></param>
         /// <param name="token"></param>
         /// <param name="timeout"></param>
-        /// <returns></returns>       
+        /// <returns></returns>
         Upload UploadAttachment(ZenFile file, string token, int? timeout = null)
         {
             var resource = $"uploads.json?filename={file.FileName}";
@@ -150,7 +150,7 @@ namespace ZendeskApi_v2.Requests
         /// <param name="file"></param>
         /// <param name="token"></param>
         /// <param name="timeout"></param>
-        /// <returns></returns>  
+        /// <returns></returns>
         public async Task<Upload> UploadAttachmentAsync(ZenFile file, string token = "", int? timeout = null)
         {
             var resource = $"uploads.json?filename={file.FileName}";

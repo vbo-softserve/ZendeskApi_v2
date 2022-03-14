@@ -31,7 +31,7 @@ namespace ZendeskApi_v2.Tests
         [Test]
         public void CanUseTokenAccess()
         {
-            var api = new ZendeskApi("https://csharpapi.zendesk.com/Api/v2", Admin.Email, "", Admin.ApiToken, "en-us", null);
+            var api = new ZendeskApi("https://csharpapi.zendesk.com/Api/v2", Admin.Email, "", Admin.ApiToken, "en-us", null, null);
             var id = Settings.SampleTicketId;
             var ticket = api.Tickets.GetTicket(id).Ticket;
 

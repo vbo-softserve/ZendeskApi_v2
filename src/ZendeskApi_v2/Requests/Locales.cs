@@ -1,6 +1,7 @@
 #if ASYNC
 using System.Threading.Tasks;
 #endif
+using System.Collections.Generic;
 using ZendeskApi_v2.Models.Locales;
 
 namespace ZendeskApi_v2.Requests
@@ -63,8 +64,8 @@ namespace ZendeskApi_v2.Requests
     public class Locales : Core, ILocales
     {
 
-        public Locales(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public Locales(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 
