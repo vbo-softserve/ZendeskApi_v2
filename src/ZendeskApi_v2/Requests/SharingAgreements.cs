@@ -1,6 +1,7 @@
 #if ASYNC
 using System.Threading.Tasks;
 #endif
+using System.Collections.Generic;
 using ZendeskApi_v2.Models.SharingAgreements;
 
 namespace ZendeskApi_v2.Requests
@@ -19,8 +20,8 @@ namespace ZendeskApi_v2.Requests
 	public class SharingAgreements : Core, ISharingAgreements
 	{
 
-        public SharingAgreements(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public SharingAgreements(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 

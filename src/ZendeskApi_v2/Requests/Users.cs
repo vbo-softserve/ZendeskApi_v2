@@ -211,8 +211,8 @@ namespace ZendeskApi_v2.Requests
     {
         private const string _incremental_export = "incremental/users.json?start_time=";
 
-        public Users(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public Users(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken,  Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 

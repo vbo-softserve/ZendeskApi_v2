@@ -4,6 +4,7 @@ using ZendeskApi_v2.Models.HelpCenter.Categories;
 using System.Threading.Tasks;
 #endif
 using System;
+using System.Collections.Generic;
 
 namespace ZendeskApi_v2.Requests.HelpCenter
 {
@@ -36,8 +37,8 @@ namespace ZendeskApi_v2.Requests.HelpCenter
             ? "help_center/categories"
             : $"help_center/{Locale}/categories";
 
-        public Categories(string yourZendeskUrl, string user, string password, string apiToken, string locale, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public Categories(string yourZendeskUrl, string user, string password, string apiToken, string locale, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
             Locale = locale;
         }

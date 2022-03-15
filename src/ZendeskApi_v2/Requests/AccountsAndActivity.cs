@@ -1,6 +1,7 @@
 #if ASYNC
 using System.Threading.Tasks;
 #endif
+using System.Collections.Generic;
 using ZendeskApi_v2.Models.AccountsAndActivities;
 
 
@@ -24,8 +25,8 @@ namespace ZendeskApi_v2.Requests
 	public class AccountsAndActivity : Core, IAccountsAndActivity
 	{
 
-        public AccountsAndActivity(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public AccountsAndActivity(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 #if SYNC
@@ -49,7 +50,7 @@ namespace ZendeskApi_v2.Requests
         public async Task<SettingsResponse> GetSettingsAsync()
         {
             return await GenericGetAsync<SettingsResponse>("account/settings.json");
-        }        
+        }
         public async Task<GroupActivityResponse> GetActivitiesAync()
         {
             return await GenericGetAsync<GroupActivityResponse>("activities.json");

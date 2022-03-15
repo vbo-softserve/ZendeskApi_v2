@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using ZendeskApi_v2.Models;
 using ZendeskApi_v2.Models.Groups;
@@ -17,7 +18,7 @@ namespace ZendeskApi_v2.Requests
     {
 #if SYNC
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>
@@ -27,7 +28,7 @@ namespace ZendeskApi_v2.Requests
         SearchResults SearchFor(string searchTerm, string sortBy = "", string sortOrder = "", int page = 1, int? perPage = null);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>
@@ -59,7 +60,7 @@ namespace ZendeskApi_v2.Requests
 
 #if ASYNC
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>
@@ -69,7 +70,7 @@ namespace ZendeskApi_v2.Requests
         Task<SearchResults> SearchForAsync(string searchTerm, string sortBy = "", string sortOrder = "", int page = 1, int? perPage = null);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>
@@ -101,19 +102,19 @@ namespace ZendeskApi_v2.Requests
     }
 
     /// <summary>
-    /// The search API is a unified search API that returns tickets, users, organizations, and forum topics. 
+    /// The search API is a unified search API that returns tickets, users, organizations, and forum topics.
     /// Define filters to narrow your search results according to result type, date attributes, and object attributes such as ticket requester or tag.
     /// </summary>
     public class Search : Core, ISearch
     {
-        public Search(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public Search(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 
 #if SYNC
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>
@@ -128,7 +129,7 @@ namespace ZendeskApi_v2.Requests
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>
@@ -175,7 +176,7 @@ namespace ZendeskApi_v2.Requests
 
 #if ASYNC
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>
@@ -190,7 +191,7 @@ namespace ZendeskApi_v2.Requests
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <param name="page">Returns specified {page} - pagination</param>

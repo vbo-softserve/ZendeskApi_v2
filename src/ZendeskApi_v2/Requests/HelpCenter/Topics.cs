@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ZendeskApi_v2.Models.HelpCenter.Subscriptions;
 #endif
+using System.Collections.Generic;
 using ZendeskApi_v2.Models.HelpCenter.Topics;
 
 namespace ZendeskApi_v2.Requests.HelpCenter
@@ -36,8 +37,8 @@ namespace ZendeskApi_v2.Requests.HelpCenter
 
     public class Topics : Core, ITopics
     {
-        public Topics(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public Topics(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 #if SYNC

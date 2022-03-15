@@ -56,8 +56,8 @@ namespace ZendeskApi_v2.Requests.HelpCenter
 
     public class UserSegments : Core, IUserSegments
     {
-        public UserSegments(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+        public UserSegments(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 
@@ -108,7 +108,7 @@ namespace ZendeskApi_v2.Requests.HelpCenter
 
         public IndividualUserSegmentResponse CreateUserSegment(UserSegment UserSegment)
         {
-            return GenericPost<IndividualUserSegmentResponse>($"help_center/user_segments.json", new IndividualUserSegmentResponse{UserSegment=UserSegment}); 
+            return GenericPost<IndividualUserSegmentResponse>($"help_center/user_segments.json", new IndividualUserSegmentResponse{UserSegment=UserSegment});
         }
 
         public bool DeleteUserSegment(long id)
@@ -163,7 +163,7 @@ namespace ZendeskApi_v2.Requests.HelpCenter
 
         public async Task<IndividualUserSegmentResponse> CreateUserSegmentAsync(UserSegment UserSegment)
         {
-            return await GenericPostAsync<IndividualUserSegmentResponse>($"help_center/user_segments.json", new IndividualUserSegmentResponse{UserSegment=UserSegment}); 
+            return await GenericPostAsync<IndividualUserSegmentResponse>($"help_center/user_segments.json", new IndividualUserSegmentResponse{UserSegment=UserSegment});
         }
 
         public async Task<bool> DeleteUserSegmentAsync(long id)

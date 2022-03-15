@@ -1,6 +1,7 @@
 ﻿#if ASYNC
 using System.Threading.Tasks;
 #endif
+using System.Collections.Generic;
 using ZendeskApi_v2.Models.HelpCenter.Comments;
 
 namespace ZendeskApi_v2.Requests.HelpCenter
@@ -41,8 +42,8 @@ namespace ZendeskApi_v2.Requests.HelpCenter
     /// </summary>
 	public class Comments : Core, IComments
 	{
-		public Comments(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+		public Comments(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken, Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
 		{
 		}
 
@@ -73,7 +74,7 @@ namespace ZendeskApi_v2.Requests.HelpCenter
 	        var body = new { comment };
 	        return GenericPost<IndividualCommentsResponse>($"help_center/articles/{articleId}/comments.json", body);
         }
-        
+
 	    public IndividualCommentsResponse CreateCommentForPost(long postId, Comment comment)
 	    {
 	        var body = new { comment };

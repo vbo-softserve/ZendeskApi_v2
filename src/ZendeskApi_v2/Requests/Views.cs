@@ -22,7 +22,7 @@ namespace ZendeskApi_v2.Requests
 		GroupViewCountResponse GetViewCounts(IEnumerable<long> viewIds);
 		IndividualViewCountResponse GetViewCount(long viewId);
 #endif
-		
+
 #if ASYNC
 		Task<GroupViewResponse> GetAllViewsAsync();
 		Task<GroupViewResponse> GetActiveViewsAsync();
@@ -37,15 +37,15 @@ namespace ZendeskApi_v2.Requests
 
 	public class Views : Core, IViews
 	{
-        
-        public Views(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken)
-            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken)
+
+        public Views(string yourZendeskUrl, string user, string password, string apiToken, string p_OAuthToken,  Dictionary<string, string> requestHeaders)
+            : base(yourZendeskUrl, user, password, apiToken, p_OAuthToken, requestHeaders)
         {
         }
 
 #if SYNC
         public GroupViewResponse GetAllViews()
-        {            
+        {
             return GenericGet<GroupViewResponse>("views.json");
         }
 
